@@ -9,7 +9,7 @@ Demonstrates proper use of CyberArk Agent Guard for managing secrets as ephemera
 - ./1-run-demo.sh
 
 ## Description
-The 1-run-demo.sh script will:
+The 1-run-demo.sh script:
 - clones the Agent Guard repo
 - creates a virtual environment with required packages
 - runs the filevars.py demo which shows environment variables exist only during the execution of the myFunc() function.
