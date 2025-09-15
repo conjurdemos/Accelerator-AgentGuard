@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ ! -d "./agent-guard" ]; then
-  git clone -b jody-init-fix git@github.com:cyberark/agent-guard.git
+  git clone git@github.com:cyberark/agent-guard.git
 fi
 
 if [[ "$(which uv)" ]]; then
