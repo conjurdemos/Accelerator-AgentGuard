@@ -1,6 +1,6 @@
 # Agent Guard Accelerator
 
-Demonstrates proper use of [CyberArk Agent Guard](https://github.com/conjurdemos/Accelerator-AgentGuard) for managing secrets as ephemeral environment variables.
+Demonstrates proper use of [CyberArk Agent Guard](https://github.com/cyberark/agent-guard) for managing secrets as ephemeral environment variables.
 
 ## Dependencies
 
