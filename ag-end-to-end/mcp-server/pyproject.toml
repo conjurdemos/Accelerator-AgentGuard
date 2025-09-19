@@ -1,0 +1,13 @@
+[project]
+name = "mcp-server"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    {name = "jody.hunt@cyberark.com"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "boto3>=1.40.34",
+    "fastmcp>=2.12.3",
+    "mysql-connector-python>=9.4.0",
+]
