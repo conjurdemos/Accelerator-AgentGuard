@@ -21,7 +21,7 @@ rm -f mcp-mysql.log
 # get JWT from jwt-this to use to authenticate to Conjur
 export CONJUR_AUTHN_JWT=$(curl -s -d "workload=$WORKLOAD_ID" \
      -H "Content-Type: application/x-www-form-urlencoded" \
-     -X POST http://localhost:8001/token | jq -r .access_token)
+     -X POST http://localhost:$JWT_EXT_PORT/token | jq -r .access_token)
 
 # Demo uses a modified version of agent_guard_core to work around
 # self-signed cert issues in Conjur OSS.
