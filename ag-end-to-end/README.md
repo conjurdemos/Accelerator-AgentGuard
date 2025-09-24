@@ -53,7 +53,7 @@ A fully realized demonstration of an agentic workflow that does not require any 
 
 ## Execution Flow
 
-1) check that assumed dependencies are met.
+1) Check that assumed dependencies are met.
 2) Run: start-demo.sh
 3) Query the database.<br>
 Suggestions:
@@ -63,4 +63,5 @@ Suggestions:
 4) Try stopping the Ollama agent (ctrl-C) and running it with a more capable (larger) LLM like gpt-oss:20b.
     - cd ollama-agent
     - ./1-run-ollama.sh gpt-oss:20b
-    gpt-oss is a model tuned for tool use and can handle much more complex queries than llama3.1:1b.
+
+    gpt-oss is an open-source model tuned for tool use that can handle natural language queries requiring complex SQL generation.
