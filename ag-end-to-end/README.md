@@ -63,7 +63,7 @@ A fully realized demonstration of an agentic workflow that does not require any 
 Suggestions:
     - "list all pets in the db."
     - "list all owners in the db."
-    - "Who owns the pet Lilah?"
+    - "Who owns the pet Lilah?" (llama3.2:1b cannot answer this)
 4) Try stopping the Ollama agent (ctrl-C) and running it with a more capable (larger) LLM like gpt-oss:20b.
     - cd ollama-agent
     - ./1-run-ollama.sh gpt-oss:20b
