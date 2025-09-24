@@ -35,13 +35,13 @@ A fully realized demonstration of an agentic workflow that does not require any 
     - **Configuration:** It is started by *start-demo.sh* and runs as a Docker container.
 
 - **Secrets Manager:**
-    - **Description:** [conjur-oss-cloud](https://github.com/jodyhuntatx/conjur-oss-cloud) is a repo that installs [Conjur OSS](https://www.conjur.org/) and configures its policy structure to match that of CyberArk Secrets Manager - SaaS (Conjur Cloud). This makes it easy to port this demo to a CyberArk tenant by simply changing variables in *demo-vars.sh*. Conjur OSS runs as collection of Docker containers managed with Docker Compose.
+    - **Description:** [conjur-oss-cloud](https://github.com/jodyhuntatx/conjur-oss-cloud) is a repo that installs [Conjur OSS](https://www.conjur.org/) and configures its policy structure to match that of CyberArk Secrets Manager - SaaS (Conjur Cloud). This makes it easy to port this demo to a CyberArk tenant by simply changing variables in *demo-vars.sh*. Conjur OSS runs as a collection of Docker containers managed with Docker Compose.
     - **Configuration:** The *start-demo.sh* script uses scripts and policy templates in the *conjur-admin* directory to configure authn-jwt, create an agent host identity and DB secrets.
 
 - **MCP Server:**
     - **Description:** A custom MCP server implemented with FastMCP that supports a single tool: run_sql_query. It runs as a Python process.
     - **Configuration:**<br>
-    The *start-demo.sh* script uses scripts and executables in the  *mcp-server* directory to manage the MCP server. The server uses a bespoke version of Agent Guard (agent_guard_core) to work around runtime issues stemming from self-signed certificates in Conjur OSS.
+    The *start-demo.sh* script starts the container and uses scripts and executables in the  *mcp-server* directory to manage the MCP server. The server uses a bespoke version of Agent Guard (agent_guard_core) to work around runtime issues stemming from self-signed certificates in Conjur OSS.
 
 - **Database:**
     - **Description:** MySQL 8.2 running as a Docker container.
@@ -54,7 +54,11 @@ A fully realized demonstration of an agentic workflow that does not require any 
 ## Execution Flow
 
 1) Check that assumed dependencies are met.
-2) Run: start-demo.sh
+2) Run:
+    - ./start-demo.sh
+    - Respond to prompts
+        - spacebar to destroy running Conjur OSS
+        - 'y' to trust the self-signed certificate.
 3) Query the database.<br>
 Suggestions:
     - "list all pets in the db."
@@ -64,4 +68,4 @@ Suggestions:
     - cd ollama-agent
     - ./1-run-ollama.sh gpt-oss:20b
 
-    gpt-oss is an open-source model tuned for tool use that can handle natural language queries requiring complex SQL generation.
+    gpt-oss is an open-source model tuned for tool use that can handle natural language queries that require complex SQL generation.
