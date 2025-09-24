@@ -20,22 +20,21 @@ A fully realized demonstration of an agentic workflow that does not require any 
 - **start-demo.sh:**<br>
 Assumes above dependencies are met. Installs, configures and runs all components below. It first runs _stop-all.sh which is destructive.
 - **_stop-all.sh:**<br>
-Stops all running demo processes and removes stopped containers.
+Stops all running demo processes and removes stopped demo containers.
 - **demo-vars.sh:**<br>
 This is the master configuration file.
 - **db-vars.sh:**<br>
 This is the master configuration file for the MySQL database.
-- **JWT provider:** [jwt-this](https://github.com/tr1ck3r/jwt-this)<br>
-jwt-this is a standalone NON-PRODUCTION issuer of JWTs with support for user-configurable claims. It is started by start-demo.sh and runs as a Docker container.
+- **JWT provider:**<br>
+[jwt-this](https://github.com/tr1ck3r/jwt-this) is a standalone NON-PRODUCTION issuer of JWTs with support for user-configurable claims. It is started by start-demo.sh and runs as a Docker container.
 - **Secrets Manager:**<br>
-The start-demo.sh script will clone the repo
-[conjur-oss-cloud](https://github.com/jodyhuntatx/conjur-oss-cloud) and run its  shell scripts to configure Conjur OSS policy structure like CyberArk Secrets Manager - SaaS (Conjur Cloud). This makes it easy to port the demo to a CyberArk tenant by simply changing variables in demo-vars. Conjur OSS runs as collection of Docker containers managed with Docker Compose.
+[conjur-oss-cloud](https://github.com/jodyhuntatx/conjur-oss-cloud) is a repo that installs [Conjur OSS](https://www.conjur.org/) and configures its policy structure to match that of CyberArk Secrets Manager - SaaS (Conjur Cloud). This makes it easy to port this demo to a CyberArk tenant by simply changing variables in *demo-vars.sh*. Conjur OSS runs as collection of Docker containers managed with Docker Compose.
     - **Configuration:**<br>
     The directory conjur-admin contains scripts and policy templates to configure authn-jwt, create an agent host identity and DB secrets.
 - **MCP Server:**<br>
 A custom MCP server implemented with FastMCP that supports a single tool: run_sql_query. It runs as a Python process.
     - **Configuration:**<br>
-    The start-demo.sh script uses scripts and executables in the  *mcp-server* directory to run the MCP server. The server uses a bespoke version of Agent Guard (agent_guard_core) to work around runtime error stemming from self-signed certificates in Conjur OSS.
+    The start-demo.sh script uses scripts and executables in the  *mcp-server* directory to run the MCP server. The server uses a bespoke version of Agent Guard (agent_guard_core) to work around runtime issues stemming from self-signed certificates in Conjur OSS.
 - **Database:**<br>
 MySQL 8.2 running as a Docker container.
     - **Configuration:**<br>
@@ -56,4 +55,7 @@ Suggestions:
     - "list all pets in the db."
     - "list all owners in the db."
     - "Who owns the pet Lilah?"
-4) Try stopping the Ollama agent and running it with a more capable (larger) LLM like gpt-oss:20b.
+4) Try stopping the Ollama agent (ctrl-C) and running it with a more capable (larger) LLM like gpt-oss:20b.
+    - cd ollama-agent
+    - ./1-run-ollama.sh gpt-oss:20b
+    gpt-oss is a model tuned for tool use and can handle much more complex queries than llama3.1:1b.
