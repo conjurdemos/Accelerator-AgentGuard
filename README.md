@@ -36,3 +36,5 @@ The 1-run-demo.sh script:
 <br>
 
 The enviroment variable names and values are dynamically retrieved from the .env file. You can change those values as needed. ALL values in the .env file will be retrieved and instantiated, but only for the scope annotated by the @EnvironmentVariablesManager.set_env_vars() decorator.
+
+The directory ag-end-to-end contains a complete end-to-end workflow illustrating Agent Guard use with a secrets manager (Conjur OSS). See the README in that directory for details.
