@@ -140,6 +140,7 @@ install_docker() {
       sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
       sudo apt-get update
       sudo apt-get install -y docker-ce
+      sudo apt install docker-compose
       sudo usermod -aG docker $USER
       newgrp docker
       ;;

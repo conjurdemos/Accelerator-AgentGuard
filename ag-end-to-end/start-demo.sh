@@ -48,6 +48,12 @@ start_conjur() {
   if ! test -d conjur-oss-cloud; then
     git clone git@github.com:jodyhuntatx/conjur-oss-cloud.git
   fi
+  if ! test -d conjur-oss-cloud; then
+    echo; echo
+    echo "Clone of conjur-oss-cloud failed. Check git configuration."
+    echo; echo
+    exit -1
+  fi
   pushd conjur-oss-cloud > /dev/null 2>&1
     ./start-conjur
     ./test_retrieval.sh
