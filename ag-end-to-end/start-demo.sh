@@ -4,6 +4,7 @@ source ./demo-vars.sh
 source ./db-vars.sh
 
 main() {
+  ./install-dependencies.sh
   ./_stop-all.sh
   start_jwt_this
   start_mysql

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 main() {
   install_homebrew
@@ -6,9 +6,7 @@ main() {
   install_python
   install_pipx
   install_pkgmgr
-  install_agentguard
-  export PYTHONPATH="./agent-guard"
-  $PKGMGR run python3 filevars.py
+  install_docker
 }
 
 install_homebrew() {
@@ -117,6 +115,38 @@ install_agentguard() {
     echo "Agent Guard repo not cloned. Check git configuration."
     exit -1
   fi
+}
+
+install_docker() {
+  if [[ "$(which docker)" != "" ]]; then
+    echo "Docker is already installed: $(docker -v)"
+    return
+  fi
+  echo "Installing Docker..."
+  case $(uname) in
+    Darwin)
+      echo "Download Docker Desktop from:"
+      echo "  https://docs.docker.com/get-started/introduction/get-docker-desktop/"
+      echo; echo
+      exit 1
+      ;;
+    Linux)
+      # Assumes Linux amd64
+      sudo apt-get remove docker docker-engine docker.io
+      sudo apt-get update
+      sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      sudo apt-key fingerprint 0EBFCD88
+      sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+      sudo apt-get update
+      sudo apt-get install -y docker-ce
+      sudo usermod -aG docker $USER
+      newgrp docker
+      ;;
+    *)
+      echo "Unsupported OS: $(uname)"
+      exit -1
+  esac
 }
 
 main $@
