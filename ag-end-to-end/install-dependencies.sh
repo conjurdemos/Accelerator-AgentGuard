@@ -7,6 +7,7 @@ main() {
   install_pipx
   install_pkgmgr
   install_docker
+  install_docker_compose
 }
 
 install_homebrew() {
@@ -140,13 +141,32 @@ install_docker() {
       sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
       sudo apt-get update
       sudo apt-get install -y docker-ce
-      sudo apt install docker-compose
       sudo usermod -aG docker $USER
       newgrp docker
       ;;
     *)
       echo "Unsupported OS: $(uname)"
       exit -1
+  esac
+}
+
+install_docker_compose() {
+  if [[ "$(which docker-compose)" != "" ]]; then
+    echo "Docker-compose is already installed: $(docker-compose -v)"
+    return
+  fi
+  echo "Installing Docker..."
+  case $(uname) in
+    Darwin)
+      echo "Download Docker Desktop from:"
+      echo "  https://docs.docker.com/get-started/introduction/get-docker-desktop/"
+      echo; echo
+      exit 1
+      ;;
+    Linux)
+      # Assumes Linux amd64
+      sudo apt install -y docker-compose
+      ;;
   esac
 }
 
