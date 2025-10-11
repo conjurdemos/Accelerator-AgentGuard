@@ -4,6 +4,15 @@ source ./demo-vars.sh
 source ./db-vars.sh
 
 main() {
+  if [[ "$CONJUR" == "cloud" ]]; then
+    if [[ "$CYBERARK_ADMIN_USER" == "<your-service-account-name>" ]]; then
+      echo "In demo-vars.sh:"
+      echo " - Set CYBERARK_ADMIN_USER to your Oauth2 service account name."
+      echo " - Set CYBERARK_ADMIN_PWD to your Oauth2 service account password."
+      echo " - Set CYBERARK_TENANT_SUBDOMAIN to your tenant subdomain name."
+      exit 1
+    fi
+  fi
   ./install-dependencies.sh
   ./_stop-all.sh
   start_jwt_this
