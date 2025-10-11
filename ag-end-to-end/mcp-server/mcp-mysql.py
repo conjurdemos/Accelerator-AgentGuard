@@ -21,7 +21,7 @@ logging.basicConfig(
 
 class DatabaseConnector:
     def __init__(self):
-        namespace_id = os.getenv("NAMESPACE_ID")
+        namespace_id = os.getenv("NAMESPACE_ID") 
         with EnvironmentVariablesManager(
             ConjurSecretsProvider(namespace=namespace_id)
         ):  # type: ignore
@@ -72,7 +72,6 @@ class DatabaseConnector:
 
 mcp = FastMCP("DatabaseTools")
 MYSQL_connector = DatabaseConnector()
-
 
 @mcp.tool()
 def run_sql_query(query: str) -> List[Dict[str, Any]]:

@@ -40,6 +40,17 @@ start_mysql() {
 }
 
 start_conjur() {
+  if [[ $CONJUR == "oss" ]]; then
+    start_conjur_oss
+  fi
+  pushd conjur-admin > /dev/null 2>&1
+    ./1-config-jwt-authn.sh
+    ./2-create-secrets.sh
+    ./3-load-app-policy.sh
+  popd > /dev/null 2>&1
+}
+
+start_conjur_oss() {
   echo; echo
   echo "Starting Conjur OSS server containers..."
   # conjur-oss-cloud configures a Conjur OSS instance with the 
@@ -58,11 +69,6 @@ start_conjur() {
     ./start-conjur
     ./test_retrieval.sh
   popd   > /dev/null 2>&1
-  pushd conjur-admin > /dev/null 2>&1
-    ./1-config-jwt-authn.sh
-    ./2-create-secrets.sh
-    ./3-load-app-policy.sh
-  popd > /dev/null 2>&1
 }
 
 start_mcp_server() {

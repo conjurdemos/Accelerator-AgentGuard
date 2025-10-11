@@ -32,7 +32,7 @@ DEFAULT_REGION = "us-east-1"
 DEFAULT_CONJUR_ACCOUNT = "conjur"
 
 HTTP_TIMEOUT_SECS = 2.0
-HTTP_VERIFY=False
+HTTP_VERIFY = os.getenv("HTTP_VERIFY", 'False').lower() in ('true', '1', 't')
 
 logger = logging.getLogger(__name__)
 

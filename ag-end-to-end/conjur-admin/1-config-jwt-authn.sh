@@ -38,7 +38,7 @@ set_authn_jwt_variables() {
    echo "Enabling authn-jwt/$AUTHN_JWT_ID endpoint..."
   ./$CONJUR_CLI set conjur/authn-jwt/$AUTHN_JWT_ID/token-app-property $TOKEN_APP_PROPERTY
    echo "Checking endpoint status..."
-  ./$CONJUR_CLI set conjur/authn-jwt/$AUTHN_JWT_ID/identity-path $IDENTITY_PATH
+  ./$CONJUR_CLI set conjur/authn-jwt/$AUTHN_JWT_ID/identity-path "data/$IDENTITY_PATH"
 }
 
 main "$@"
