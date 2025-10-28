@@ -26,7 +26,7 @@ export CONJUR_AUTHN_JWT=$(curl -s -d "$TOKEN_APP_PROPERTY=$WORKLOAD_ID" \
 # Demo uses a modified version of agent_guard_core to work around
 # self-signed cert issues in Conjur OSS.
 export PYTHONPATH=./agent_guard_core
-nohup $PKGMGR run python3 mcp-mysql.py > mcp-mysql.log 2>&1 &
+nohup $PKGMGR run python3 mcp-mysql.py > mcp-mysql.console 2>&1 &
 echo "Waiting for server to startup..."
 sleep 15
 cat mcp-mysql.log

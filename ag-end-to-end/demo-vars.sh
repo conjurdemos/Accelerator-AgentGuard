@@ -6,14 +6,14 @@ export JWT_INT_PORT=8000
 export JWT_EXT_PORT=8001
 export JWKS_EXT_URI=http://localhost:${JWT_EXT_PORT}/.well-known/jwks.json
 
-export CONJUR=cloud
+export CONJUR=oss
 if [ "$CONJUR" = "cloud" ]; then
     # Identity oauth2 service account w/ Secrets Manager - Conjur Cloud Admin role
-    export CYBERARK_ADMIN_USER="<your-service-account-name"
+    export CYBERARK_ADMIN_USER=<your service account user>
     # Service account password
-    export CYBERARK_ADMIN_PWD="<your-service-account-password"
+    export CYBERARK_ADMIN_PWD=<your service account password>
     # "Friendly" tenant name (i.e. not like aab1234)
-    export CYBERARK_TENANT_SUBDOMAIN="<your-tenant-subdomain-name>"
+    export CYBERARK_TENANT_SUBDOMAIN=<your friendly tenant subdomain>
 
     # Do not change the 6 vars below
     export CYBERARK_IDENTITY_URL=https://${CYBERARK_TENANT_SUBDOMAIN}.cyberark.cloud/api/idadmin

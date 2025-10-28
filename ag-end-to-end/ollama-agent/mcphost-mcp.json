@@ -3,6 +3,10 @@
     "mcpsql": {
       "type": "remote",
       "url": "http://localhost:8040/mcp"
+    },
+    "pdfsql": {
+      "type": "remote",
+      "url": "http://localhost:2041/mcp"
     }
   }
 }
